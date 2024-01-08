@@ -8,6 +8,7 @@ ENV_ID = {
     'image_maze': 'ImageMaze-v0',
     'obj_extraction': 'ObjExtraction-v0',
     'obj_dynamic_extraction': 'ObjDynamicExtraction-v0',
+    'safety_gym': 'SafetyGym-v0',
 }
 
 ENV_CLASS = {
@@ -17,6 +18,7 @@ ENV_CLASS = {
     'image_maze': 'MazeImageNavigation',
     'obj_extraction': 'ObjExtraction',
     'obj_dynamic_extraction': 'ObjDynamicExtraction',
+    'safety_gym': 'SafetyGymEnv',
 }
 
 

@@ -80,7 +80,7 @@ def get_args():
                         help='batch size (default: 256)')
     parser.add_argument('--num_steps',
                         type=int,
-                        default=1000000,
+                        default=500000,
                         help='maximum number of steps (default: 1000000)')
     parser.add_argument('--num_eps',
                         type=int,

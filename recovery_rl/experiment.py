@@ -23,7 +23,11 @@ TORCH_DEVICE = torch.device(
     'cuda') if torch.cuda.is_available() else torch.device('cpu')
 
 
-def torchify(x): return torch.FloatTensor(x).to('cuda')
+def torchify(x):
+    out = torch.FloatTensor(x)
+    if torch.cuda.is_available():
+        out = out.to('cuda')
+    return out
 
 
 def npy_to_gif(im_list, filename, fps=4):
@@ -43,11 +47,12 @@ class Experiment:
     def __init__(self, exp_cfg):
         self.exp_cfg = exp_cfg
         # Logging setup
-        self.logdir = os.path.join(
+        self.logdir = os.path.expanduser(os.path.join(
+            '~/rec-rl',
             self.exp_cfg.logdir, '{}_SAC_{}_{}_{}'.format(
                 datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"),
                 self.exp_cfg.env_name, self.exp_cfg.policy,
-                self.exp_cfg.logdir_suffix))
+                self.exp_cfg.logdir_suffix)))
         if not os.path.exists(self.logdir):
             os.makedirs(self.logdir)
         print("LOGDIR: ", self.logdir)

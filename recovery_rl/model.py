@@ -495,7 +495,7 @@ class StochasticPolicy(nn.Module):
 
         self.mean = nn.Linear(hidden_dim, num_actions)
         self.log_std = torch.nn.Parameter(
-            torch.as_tensor([np.log(0.1)] * num_actions))
+            torch.as_tensor([np.log(0.1)] * num_actions)).float()
         self.min_log_std = np.log(1e-6)
 
         self.apply(weights_init_)

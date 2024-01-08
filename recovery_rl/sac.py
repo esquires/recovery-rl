@@ -232,10 +232,11 @@ class SAC(object):
 
         self.critic_optim.zero_grad()
         (qf1_loss + qf2_loss).backward()
-        self.critic_optim.step()
 
         self.policy_optim.zero_grad()
         policy_loss.backward()
+
+        self.critic_optim.step()
         self.policy_optim.step()
 
         if self.automatic_entropy_tuning:

@@ -1,3 +1,26 @@
+This is a fork. Here is how to run it (run on Ubuntu 22.04)
+
+```bash
+sudo apt update
+sudo apt install -y python3-pip ffmpeg zip unzip libsm6 libxext6 libgl1-mesa-dev libosmesa6-dev libgl1-mesa-glx patchelf
+
+conda create -n rec-rl python=3.10
+conda activate rec-rl
+# install pytorch, e.g., conda install pytorch torchvision torchaudio cpuonly -c pytorch
+pip3 install numpy scipy gym dotmap matplotlib tqdm opencv-python tensorboardX moviepy plotly gdown
+pip install Cython==0.29.36
+pip install chardet
+
+# safety gym install
+wget https://mujoco.org/download/mujoco210-linux-x86_64.tar.gz
+tar xf mujoco210-linux-x86_64.tar.gz
+mkdir ~/.mujoco 
+mv mujoco210 ~/.mujoco
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/esquires3/.mujoco/mujoco210/bin:/usr/lib/nvidia
+pip install -e ../safety-gym
+pip install -e ../srlnbc
+```
+
 # Recovery RL: Safe Reinforcement Learning with Learned Recovery Zones
 ------------
 
@@ -14,6 +37,7 @@
 
 # Description
 ------------
+
 Implementation of  <a href="https://arxiv.org/pdf/2010.15920.pdf">Recovery RL: Safe Reinforcement Learning with Learned Recovery Zones</a>. The SAC code is built 
 on top of the Pytorch implementation of Soft Actor Critic from <a href="https://github.com/pranz24/pytorch-soft-actor-critic">pytorch-soft-actor-critic</a>. For the 
 recovery policy, we build on the implementations of the PETS algorithm from <a href="https://github.com/quanvuong/handful-of-trials-pytorch">handful-of-trials-pytorch.</a> 
